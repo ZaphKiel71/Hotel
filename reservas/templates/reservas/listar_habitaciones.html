@@ -1,0 +1,32 @@
+{% extends 'reservas/base.html' %}
+
+{% block content %}
+<h2>Listado de Habitaciones</h2>
+<a href="{% url 'crear_habitacion' %}" class="btn btn-primary mb-3">Agregar Habitación</a>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for habitacion in habitaciones %}
+        <tr>
+            <td>{{ habitacion.n_habitacion }}</td>
+            <td>{{ habitacion.tipo_habitacion.nombre_tipo_hab }}</td>
+            <td>{{ habitacion.estado_habitacion }}</td>
+            <td>
+                <a href="{% url 'editar_habitacion' habitacion.n_habitacion %}" class="btn btn-warning btn-sm">Editar</a>
+                <form action="{% url 'eliminar_habitacion' habitacion.n_habitacion %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

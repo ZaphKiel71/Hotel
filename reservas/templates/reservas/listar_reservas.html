@@ -1,0 +1,27 @@
+{% extends 'reservas/base.html' %}
+
+{% block content %}
+<a href="{% url 'crear_reserva' %}" class="btn btn-primary mb-3">Nueva Reserva</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Pasajero</th>
+            <th>Habitación</th>
+            <th>Fecha</th>
+            <th>Días</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reserva in reservas %}
+        <tr>
+            <td>{{ reserva.nro_reserva }}</td>
+            <td>{{ reserva.pasajero.nombre }}</td>
+            <td>{{ reserva.habitacion.n_habitacion }}</td>
+            <td>{{ reserva.fecha_reserva }}</td>
+            <td>{{ reserva.cantidad_dias }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

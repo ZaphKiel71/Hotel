@@ -1,0 +1,52 @@
+{% extends 'reservas/base.html' %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="pasajero" class="form-label">Pasajero</label>
+        <select name="pasajero" id="pasajero" class="form-select">
+            {% for pasajero in pasajeros %}
+            <option value="{{ pasajero.id_pasajero }}">{{ pasajero.nombre }} {{ pasajero.apellido_paterno }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="habitacion" class="form-label">Habitación</label>
+        <select name="habitacion" id="habitacion" class="form-select">
+            {% for habitacion in habitaciones %}
+            <option value="{{ habitacion.n_habitacion }}">Habitación {{ habitacion.n_habitacion }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="fecha_reserva" class="form-label">Fecha de Reserva</label>
+        <input type="date" name="fecha_reserva" id="fecha_reserva" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="cantidad_dias" class="form-label">Cantidad de Días</label>
+        <input type="number" name="cantidad_dias" id="cantidad_dias" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="usuario" class="form-label">Usuario</label>
+        <select name="usuario" id="usuario" class="form-select">
+            {% for usuario in usuarios %}
+            <option value="{{ usuario.id_usuario }}">{{ usuario.nombre_usuario }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="estado_reserva" class="form-label">Estado de Reserva</label>
+        <input type="text" name="estado_reserva" id="estado_reserva" class="form-control" value="Reservado" readonly>
+    </div>
+    <div class="mb-3">
+        <label for="cantidad_persona" class="form-label">Cantidad de Personas</label>
+        <input type="number" name="cantidad_persona" id="cantidad_persona" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="nombre_empresa" class="form-label">Nombre de la Empresa (opcional)</label>
+        <input type="text" name="nombre_empresa" id="nombre_empresa" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-success">Crear Reserva</button>
+</form>
+{% endblock %}

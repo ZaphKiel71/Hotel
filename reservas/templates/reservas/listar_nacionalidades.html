@@ -1,0 +1,28 @@
+{% extends 'reservas/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Listado de Nacionalidades</h2>
+    <a href="{% url 'crear_nacionalidad' %}" class="btn btn-success mb-3">Agregar Nacionalidad</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nacionalidad in nacionalidades %}
+            <tr>
+                <td>{{ nacionalidad.codigo_naci }}</td>
+                <td>{{ nacionalidad.descripcion }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No hay nacionalidades registradas.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'reservas/base.html' %}
+
+{% block content %}
+<h2>Editar Pasajero</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_nombre">Nombre</label>
+        <input type="text" class="form-control" id="id_nombre" name="nombre" value="{{ form.nombre.value }}" required>
+    </div>
+    <div class="form-group">
+        <label for="id_apellido_paterno">Apellido Paterno</label>
+        <input type="text" class="form-control" id="id_apellido_paterno" name="apellido_paterno" value="{{ form.apellido_paterno.value }}" required>
+    </div>
+    <div class="form-group">
+        <label for="id_correo">Correo</label>
+        <input type="email" class="form-control" id="id_correo" name="correo" value="{{ form.correo.value }}" required>
+    </div>
+    <div class="form-group">
+        <label for="id_codigo_naci">Nacionalidad</label>
+        <select class="form-control" id="id_codigo_naci" name="codigo_naci" required>
+            {% for nacionalidad in form.codigo_naci.field.queryset %}
+                <option value="{{ nacionalidad.id }}" {% if nacionalidad.id == form.codigo_naci.value %}selected{% endif %}>
+                    {{ nacionalidad.descripcion }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    <a href="{% url 'listar_pasajeros' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'reservas/base.html' %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Bienvenido al Sistema de Reservas</h1>
+    <p class="lead">Gestione habitaciones, pasajeros, reservas, y más desde un solo lugar.</p>
+    <a href="{% url 'listar_reservas' %}" class="btn btn-primary">Ir a Reservas</a>
+</div>
+{% endblock %}
